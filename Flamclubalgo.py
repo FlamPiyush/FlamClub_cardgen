@@ -32,45 +32,9 @@ def generate_black_code_image(W,H,code,font_size=36,font_type="f.ttf"):
 def generate_image(seed,foldername,code,codeW=500,codeH=100,width=900,height=1600,m=100,k=200,baseheight=100,th=50,Density=200,font_size=56,font_type="f.ttf"):
     print("Starting FlamClub Algo................................")
     print("Default value of width == 900....\nDefault value of height == 1600....\nDefault value of margin in width == 200....\nDefault value of margin in height == 100....\nDefault value of doodle height == 100....\nDefault value of distance b/w doodle == 50....\nDefault value of density of doodles == 200....\n")
-    images = load_images_from_folder(foldername)
+    
+    res_images = load_images_from_folder(foldername+"resized")
 
-
-
-    # while True:
-    #     foldername = input("Please enter folder path that contains the doodles")
-    #     if foldername: break
-
-
-
-    # width = int( input("Enter height of Document") or 900)
-    # height = int( input("Enter width of Document") or 1600)
-    # m =int( input("Enter margin in height of Document") or 100)
-    # k =int( input("Enter margin in width of Document") or 200)
-    # baseheight = int( input("Enter height of doodle") or 100)
-    # # r = 5
-    # while True:
-    #     seed = input('Please Enter seed')
-    #     if seed: break
-    # th = int( input("Enter the distance between doodles") or 50)
-    # Density = int( input("Enter density of doodles") or 200)
-
-
-    res_images = []
-    for img in images:
-        if img.size[0]>img.size[1]:
-            wpercent = (baseheight/float(img.size[0]))
-            hsize = int((float(img.size[1])*float(wpercent)))
-            a = baseheight
-        else:
-            hsize = baseheight
-            wpercent = (baseheight/float(img.size[1]))
-            a = int((float(img.size[0])*float(wpercent)))
-        try:
-            img = img.resize((a,hsize), Image.ANTIALIAS)
-            # print(img.size[0])
-            res_images.append(img)
-        except Exception as e:
-            print(e)
 
     points =[]
 
@@ -104,7 +68,6 @@ def generate_image(seed,foldername,code,codeW=500,codeH=100,width=900,height=160
         b = 0.8+ (random.random())/2
         var = random.randint(0,len(res_images)-1)
         puti = res_images[var]
-        img = img.resize((int(puti.size[0]*b),int(puti.size[1]*b)), Image.ANTIALIAS)
         puti = puti.rotate(a, PIL.Image.NEAREST, expand = 1)
         new_image.paste(puti, i,puti)
 
@@ -120,4 +83,4 @@ def generate_image(seed,foldername,code,codeW=500,codeH=100,width=900,height=160
 
     new_image.save("New{}{}{}.png".format(seed,th,baseheight))
 
-generate_image(123123123,"shapes2",353453)
+generate_image(23466154,"shapes2",353453)
